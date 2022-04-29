@@ -27,6 +27,7 @@ const getCompanys = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getCompanys = getCompanys;
 const addCompany = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.info(`Attempting to add company: ${JSON.stringify(req.body)}`);
         const body = req.body;
         const company = new Company_1.default({
             name: body.name,
@@ -38,6 +39,7 @@ const addCompany = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         res
             .status(201)
             .json({ message: "Company added", company: newCompany, companys: allCompanys });
+        console.info(`Company added successfully ${newCompany}`);
     }
     catch (error) {
         throw error;

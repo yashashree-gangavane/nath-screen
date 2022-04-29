@@ -6,7 +6,7 @@ const companySchema = new mongoose_1.Schema({
         type: String,
         required: true,
     },
-    gstNumber: {
+    gstNo: {
         type: String,
         required: false,
     },

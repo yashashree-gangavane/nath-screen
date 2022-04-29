@@ -9,16 +9,16 @@ const Company: React.FC<Props> = ({company, updateCompany, deleteCompany}) => {
   return (
       <div className="Card">
         <div className="Card--text">
-          <h1>{company.name}</h1>
-          <span>{company.gstNo}</span>
-          <span>{company.address}</span>
+          <h1>Name: {company.name}</h1>
+          <span>GST No: {company.gstNo}</span>
+          <span>Address: {company.address}</span>
         </div>
         <div className="Card--button">
-          <button
+          {/*<button
               onClick={() => updateCompany(company)}
           >
             Complete
-          </button>
+          </button>*/}
           <button
               onClick={() => deleteCompany(company._id)}
               className="Card--button__delete"

@@ -14,6 +14,7 @@ const getCompanys = async (req: Request, res: Response): Promise<void> => {
 
 const addCompany = async (req: Request, res: Response): Promise<void> => {
   try {
+    console.info(`Attempting to add company: ${JSON.stringify(req.body)}`)
     const body = req.body as Pick<ICompany, "name" | "gstNo" | "address">
 
     const company: ICompany = new Company({
@@ -28,6 +29,8 @@ const addCompany = async (req: Request, res: Response): Promise<void> => {
     res
     .status(201)
     .json({ message: "Company added", company: newCompany, companys: allCompanys })
+
+    console.info(`Company added successfully ${newCompany}`)
   } catch (error) {
     throw error
   }

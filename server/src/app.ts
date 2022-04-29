@@ -7,20 +7,26 @@ const app: Express = express()
 
 const PORT: string | number = process.env.PORT || 4000
 
+console.info("Starting server")
+
 app.use(cors())
 app.use(companyRoutes)
 
-const uri: string = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@clustercompany.raz9g.mongodb.net/${process.env.MONGO_DB}?retryWrites=true&w=majority`
+//TODO: const uri: string = `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@localhost:27017/mydb`
+const uri: string = `mongodb://localhost:27017/mydb`
 const options = { useNewUrlParser: true, useUnifiedTopology: true }
-//mongoose.set("useFindAndModify", false)
+mongoose.set("useFindAndModify", false)
 
 mongoose
-.connect(uri)
-.then(() =>
-    app.listen(PORT, () =>
-        console.log(`Server running on http://localhost:${PORT}`)
-    )
+.connect(uri, options)
+.then(() => {
+      app.listen(PORT, () =>
+          console.log(`Server running on http://localhost:${PORT}`)
+      )
+      console.info("Server started successfully")
+    }
 )
 .catch(error => {
+  console.error(`Error in running server at ${PORT}`, error )
   throw error
 })
